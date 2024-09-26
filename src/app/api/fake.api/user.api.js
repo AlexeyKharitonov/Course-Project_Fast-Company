@@ -197,6 +197,6 @@ const getById = (id) =>
     });
 export default {
     fetchAll,
-    getById,
-    update
+    update,
+    getById
 };

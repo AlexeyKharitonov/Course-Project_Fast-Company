@@ -1,52 +1,29 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import api from "../../../api";
-import { useHistory } from "react-router-dom";
+import UserCard from "../../ui/userCard";
+import UserQualities from "../../ui/userQualities";
+import UserCompletedMeetings from "../../ui/userCompletedMeetings";
+import Comments from "../../ui/comments";
 
 const UserPage = ({ userId }) => {
     const [user, setUser] = useState();
-    const history = useHistory();
 
     useEffect(() => {
         api.users.getById(userId).then((data) => setUser(data));
     }, []);
-
-    const handleToUsers = () => {
-        history.push("/users");
-    };
-
     if (user) {
         return (
-            <div className="m-3">
-                <h1>{user.name}</h1>
-                <h2>Профессия: {user.profession.name}</h2>
-                <div>
-                    {user.qualities.map((qual) => (
-                        <span
-                            key={qual._id}
-                            className={`badge m-1 bg-${qual.color}`}
-                        >
-                            {qual.name}
-                        </span>
-                    ))}
-                </div>
-                <div>completedMeetings: {user.completedMeetings}</div>
-
-                <h2>Rate: {user.rate}</h2>
-                <div>
-                    <button onClick={handleToUsers} className="btn btn-warning">
-                        Все пользователи
-                    </button>
-                </div>
-                <div className="mt-2">
-                    <button
-                        onClick={() => {
-                            history.push(`/users/${userId}/edit`);
-                        }}
-                        className="btn btn-warning"
-                    >
-                        Редактировать
-                    </button>
+            <div className="container">
+                <div className="row gutters-sm">
+                    <div className="col-md-4 mb-3">
+                        <UserCard user={user} />
+                        <UserQualities user={user.qualities} />
+                        <UserCompletedMeetings
+                            numbers={user.completedMeetings}
+                        />
+                    </div>
+                    <Comments />
                 </div>
             </div>
         );

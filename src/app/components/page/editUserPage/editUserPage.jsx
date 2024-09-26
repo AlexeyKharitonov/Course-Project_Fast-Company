@@ -7,6 +7,7 @@ import MultiSelectField from "../../common/form/multiSelectField";
 import SelectField from "../../common/form/selectField";
 import TextField from "../../common/form/textField";
 import { useHistory } from "react-router-dom";
+import BackHistoryButton from "../../common/BackButton";
 
 const EditUserPage = ({ userId }) => {
     const history = useHistory();
@@ -154,8 +155,10 @@ const EditUserPage = ({ userId }) => {
 
     return (
         <>
+            {/* <div className="mx-5 mr-5"></div> */}
             {loading === false ? (
                 <div className="container mt-5 ">
+                    <BackHistoryButton />
                     <div className="row">
                         <div className="col-md-6 offset-md-3 shadow p-4">
                             <form onSubmit={handleSubmit}>

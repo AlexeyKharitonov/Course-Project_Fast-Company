@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 
 const Users = () => {
     const { userId, edit } = useParams();
-    console.log(useParams());
 
     return (
         <>

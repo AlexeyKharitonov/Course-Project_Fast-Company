@@ -16,6 +16,7 @@ const RegistorForm = () => {
         qualities: [],
         licence: false
     });
+
     const [qualities, setQualities] = useState([]);
     const [professions, setProfession] = useState();
     const [errors, setErrors] = useState("");
@@ -128,6 +129,9 @@ const RegistorForm = () => {
             qualities: getQualities(qualities)
         });
     };
+
+    console.log(professions);
+    console.log(data.profession);
 
     return (
         <form onSubmit={handleSubmit}>
